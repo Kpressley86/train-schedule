@@ -25,7 +25,7 @@ $(document).ready(function () {
     // Current Time  Function//
 
     function currentTime() {
-        var current = moment().format('LT');
+        var current = moment().format('HH:mm');
         $("#current-time").html(current);
         setTimeout(currentTime, 1000);
     };
@@ -100,7 +100,7 @@ $(document).ready(function () {
             let snapshotValue = snapshot.val();
             console.log(snapshotValue);
 
-            var startTimeConverted = moment(snapshotValue.startTime, "hh:mm").subtract(1, "years");
+            var startTimeConverted = moment(snapshotValue.startTime, "HH:mm").subtract(1, "years");
             var timeDiff = moment().diff(moment(startTimeConverted), "minutes");
             var timeRemain = timeDiff % snapshotValue.frequency;
             var minToArrival = snapshotValue.trainFrequency - timeRemain;
