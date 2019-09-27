@@ -33,7 +33,7 @@ $(document).ready(function () {
             .push({
                 name: trainName,
                 destination: trainDestination,
-                arrival: trainArrival,
+                firstArrival: trainArrival,
                 frequency: trainFrequency
             });
 
@@ -47,22 +47,22 @@ $(document).ready(function () {
                 
                 console.log(snapshot.val());
                 
-                let formattedDate = moment(date, "MM/DD/YY");
-                let monthsWorked = $("<td>").text(formattedDate.dif(moment(), "months"));
-                let totalbilled = $("<td>").text(monthsWorked * rate);
+                //let formattedTime = moment(firstArrival, "HH:mm");
+                //let monthsWorked = $("<td>").text(formattedTime.dif(moment(), "months"));
+                //let totalbilled = $("<td>").text(monthsWorked * rate);
                 var name = $("<td>").text(snapshotValue.name);
-                var role = $("<td>").text(snapshotValue.role);
-                var date = $("<td>").text(snapshotValue.start);
-                var rate = $("<td>").text(snapshotValue.rate);
+                var destination = $("<td>").text(snapshotValue.destination);
+                var firstArrival = $("<td>").text(snapshotValue.firstArrival);
+                var frequency = $("<td>").text(snapshotValue.frequency);
                 
                 let newRow = $("<tr>");
 
                 newRow.append(name);
-                newRow.append(role);
-                newRow.append(date);
-                newRow.append(monthsWorked);
-                newRow.append(rate);
-                newRow.append(totalbilled);
+                newRow.append(destination);
+                newRow.append(firstArrival);
+                newRow.append(frequency);
+                newRow.append(nextArrival);
+                newRow.append(minutesAway);
 
             });
 
