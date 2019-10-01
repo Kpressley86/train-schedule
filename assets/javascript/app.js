@@ -100,9 +100,9 @@ $(document).ready(function () {
             let snapshotValue = snapshot.val();
             console.log(snapshotValue);
 
-            var startTimeConverted = moment(snapshotValue.startTime, "HH:mm").subtract(1, "years");
-            var timeDiff = moment().diff(moment(startTimeConverted), "minutes");
-            var timeRemain = timeDiff % snapshotValue.frequency;
+            var arrivalConverted = moment(snapshotValue.trainArrival, "HH:mm").subtract(1, "years");
+            var timeDiff = moment().diff(moment(arrivalConverted), "minutes");
+            var timeRemain = timeDiff % snapshotValue.trainFrequency;
             var minToArrival = snapshotValue.trainFrequency - timeRemain;
             var nextTrain = moment().add(minToArrival, "minutes");
             var key = snapshotValue.key;
@@ -113,7 +113,7 @@ $(document).ready(function () {
             newrow.append($("<td>" + snapshotValue.trainName + "</td>"));
             newrow.append($("<td>" + snapshotValue.trainDestination + "</td>"));
             newrow.append($("<td class='text-center'>" + snapshotValue.trainFrequency + "</td>"));
-            newrow.append($("<td class='text-center'>" + moment(nextTrain).format("LT") + "</td>"));
+            newrow.append($("<td class='text-center'>" + moment(nextTrain).format("HH:mm") + "</td>"));
             newrow.append($("<td class='text-center'>" + minToArrival + "</td>"));
             newrow.append($("<td class='text-center'><button class='delete btn btn-warning btn-xs' data-key='" + key + "'>	&#128465;</button></td>"));
 
@@ -125,7 +125,8 @@ $(document).ready(function () {
 
         });
 
-    $(document).on("click", ".delete", function () {
+        // Remove Items From Firebase //
+    $(document).on("click", function () {
         keyref = $(this).attr("data-key");
         database.ref().child(keyref).remove();
         window.location.reload();
